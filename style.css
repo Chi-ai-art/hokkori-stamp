@@ -1,0 +1,252 @@
+:root {
+  --bg: #fbf6ec;
+  --paper: #fffdf8;
+  --ink: #3d322a;
+  --ink-soft: #7a6a5c;
+  --line: #e7dccb;
+  --accent: #e0833f;
+  --line-green: #06c755;
+  --radius: 22px;
+  --hand: "Yusei Magic", "Zen Maru Gothic", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
+  font-weight: 500;
+  line-height: 1.8;
+  /* 方眼ノートっぽい地紋 */
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+
+/* ---------- ヘッダー ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 12px clamp(16px, 4vw, 40px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 2px solid var(--ink);
+}
+.logo { font-family: var(--hand); font-size: clamp(17px, 4vw, 22px); text-decoration: none; white-space: nowrap; }
+.logo span { color: var(--accent); }
+.site-header nav { display: flex; gap: clamp(10px, 3vw, 24px); font-size: 14px; }
+.site-header nav a { text-decoration: none; font-weight: 700; }
+.site-header nav a:hover { color: var(--accent); }
+
+main { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+/* ---------- ヒーロー ---------- */
+.hero {
+  position: relative;
+  padding: clamp(48px, 9vw, 96px) 0 clamp(40px, 6vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr minmax(240px, 40%);
+  align-items: center;
+  column-gap: 24px;
+}
+.hero-kicker {
+  margin: 0 0 12px;
+  display: inline-block;
+  padding: 2px 14px; border: 2px solid var(--ink); border-radius: 999px;
+  background: var(--paper); font-size: 13px; font-weight: 700;
+}
+.hero-title {
+  margin: 0;
+  font-family: var(--hand); font-weight: 400;
+  font-size: clamp(34px, 6.4vw, 68px); line-height: 1.25;
+}
+.hero-fixed { display: block; }
+.hero-slot {
+  display: inline-block; padding: 0 .2em;
+  background: linear-gradient(transparent 62%, #fff0b8 62%);
+}
+#heroName { display: inline-block; }
+#heroName.long { font-size: .72em; }
+.nb { white-space: nowrap; }
+#heroName.pop { animation: pop .5s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes pop { from { transform: translateY(.4em) scale(.9); opacity: 0; } to { transform: none; opacity: 1; } }
+.hero-lead { margin: 20px 0 0; color: var(--ink-soft); font-size: clamp(15px, 1.8vw, 17px); }
+
+.hero-stage { position: relative; aspect-ratio: 1; }
+.hero-sticker {
+  position: absolute; width: 58%;
+  filter: drop-shadow(0 6px 0 rgba(61, 50, 42, .12));
+  animation: float 4s ease-in-out infinite, fadein .5s ease-out;
+}
+.hero-sticker.h0 { left: 20%; top: 18%; width: 64%; z-index: 2; }
+.hero-sticker.h1 { left: -4%; top: -2%; width: 44%; transform: rotate(-8deg); animation-delay: -1.3s; }
+.hero-sticker.h2 { right: -4%; bottom: -2%; width: 44%; transform: rotate(7deg); animation-delay: -2.6s; }
+@keyframes float { 50% { translate: 0 -8px; } }
+@keyframes fadein { from { opacity: 0; } }
+
+/* ---------- セクション共通 ---------- */
+.section { padding: clamp(40px, 7vw, 72px) 0; }
+.section-title {
+  margin: 0 0 28px;
+  font-family: var(--hand); font-weight: 400; font-size: clamp(26px, 4vw, 36px); line-height: 1.3;
+}
+.section-title small {
+  display: block; margin-top: 4px;
+  font-family: "Zen Maru Gothic", sans-serif; font-size: 14px; color: var(--ink-soft);
+}
+
+/* ---------- シリーズカード ---------- */
+.series-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.series-card {
+  position: relative;
+  background: var(--paper);
+  border: 2px solid var(--ink); border-radius: var(--radius);
+  box-shadow: 5px 5px 0 var(--c);
+  transition: transform .2s, box-shadow .2s;
+}
+.series-card:hover { transform: translate(-2px, -2px) rotate(-.6deg); box-shadow: 8px 8px 0 var(--c); }
+.series-link { display: flex; flex-direction: column; height: 100%; padding: 18px 18px 16px; text-decoration: none; }
+.series-main { width: 55%; margin: 0 auto 6px; }
+.series-kicker { margin: 0; font-size: 12px; color: var(--ink-soft); }
+.series-name { margin: 0; font-family: var(--hand); font-weight: 400; font-size: 24px; line-height: 1.35; color: var(--c); }
+.series-catch { margin: 2px 0 12px; font-size: 14px; }
+.series-peek {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;
+  padding: 8px; margin-top: auto;
+  background: color-mix(in srgb, var(--c) 10%, white); border-radius: 14px;
+}
+.series-more { margin-top: 12px; font-size: 14px; font-weight: 700; text-align: right; color: var(--c); }
+.badge-new {
+  position: absolute; top: -12px; right: 16px;
+  padding: 2px 12px; border: 2px solid var(--ink); border-radius: 999px;
+  background: #fff0b8; font-size: 12px; font-weight: 700; transform: rotate(4deg);
+}
+
+/* ---------- 漫画 ---------- */
+.empty {
+  margin: 0; padding: 36px 20px; text-align: center; color: var(--ink-soft);
+  background: var(--paper); border: 2px dashed var(--line); border-radius: var(--radius);
+}
+.manga-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
+.manga-card {
+  padding: 0; overflow: hidden; cursor: pointer; text-align: left;
+  background: var(--paper); border: 2px solid var(--ink); border-radius: var(--radius);
+  box-shadow: 5px 5px 0 var(--c);
+  transition: transform .2s;
+}
+.manga-card:hover { transform: translate(-2px, -2px); }
+.manga-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: top; border-bottom: 2px solid var(--ink); }
+.manga-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 12px 14px 14px; }
+.manga-series { padding: 0 8px; border-radius: 999px; background: var(--c); color: #fff; font-size: 12px; font-weight: 700; }
+.manga-title { flex-basis: 100%; font-weight: 700; line-height: 1.5; }
+.manga-pages { font-size: 12px; color: var(--ink-soft); }
+
+/* ---------- このシリーズについて ---------- */
+.about-body {
+  padding: clamp(22px, 4vw, 36px);
+  background: var(--paper); border: 2px solid var(--ink); border-radius: var(--radius);
+}
+.about-body p { margin: 0; }
+.about-points { list-style: none; margin: 22px 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.about-points li {
+  padding: 14px 10px; text-align: center; font-size: 13px; color: var(--ink-soft);
+  border: 2px dashed var(--line); border-radius: 16px;
+}
+.about-points b { display: block; font-family: var(--hand); font-weight: 400; font-size: 24px; color: var(--ink); }
+.about-next { font-weight: 700; }
+
+/* ---------- シリーズ詳細 ---------- */
+.detail { padding: 24px 0 64px; }
+.back { display: inline-block; margin-bottom: 18px; font-size: 14px; font-weight: 700; text-decoration: none; color: var(--ink-soft); }
+.back:hover { color: var(--c); }
+.detail-head {
+  display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: center;
+  padding: clamp(20px, 4vw, 32px);
+  background: var(--paper); border: 2px solid var(--ink); border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--c);
+}
+.detail-name { margin: 0 0 8px; font-family: var(--hand); font-weight: 400; font-size: clamp(30px, 5vw, 44px); line-height: 1.25; color: var(--c); }
+.detail-desc { margin: 0 0 18px; }
+.btn-line {
+  display: inline-block; padding: 10px 22px;
+  background: var(--line-green); color: #fff; font-weight: 700; text-decoration: none;
+  border: 2px solid var(--ink); border-radius: 999px; box-shadow: 3px 3px 0 var(--ink);
+}
+.btn-line:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+.detail-sub { margin: 44px 0 16px; font-family: var(--hand); font-weight: 400; font-size: 26px; }
+.detail-sub small { margin-left: 12px; font-family: "Zen Maru Gothic", sans-serif; font-size: 13px; color: var(--ink-soft); }
+.sticker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+.sticker {
+  padding: 8px; cursor: zoom-in;
+  background: var(--paper); border: 2px solid var(--line); border-radius: 16px;
+  transition: border-color .15s, transform .15s;
+}
+.sticker:hover { border-color: var(--c); transform: rotate(-2deg) scale(1.04); }
+.detail-manga { margin: 28px 0 0; font-weight: 700; }
+.detail-pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 44px; font-weight: 700; }
+.detail-pager a { text-decoration: none; padding: 8px 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 999px; }
+.detail-pager a:hover { background: #fff0b8; }
+
+/* ---------- ビューア ---------- */
+.viewer {
+  width: min(92vw, 560px); max-height: 92vh; padding: 24px 24px 16px;
+  background: var(--paper); border: 2px solid var(--ink); border-radius: var(--radius);
+}
+.viewer[data-kind="manga"] { width: min(96vw, 900px); }
+.viewer::backdrop { background: rgba(61, 50, 42, .55); }
+.viewer img { margin: 0 auto; max-height: 76vh; object-fit: contain; }
+.viewer-close {
+  position: absolute; top: 8px; right: 10px;
+  width: 36px; height: 36px; border: 0; background: none; font-size: 26px; line-height: 1; cursor: pointer;
+}
+.viewer-nav { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 12px; font-size: 14px; color: var(--ink-soft); }
+.viewer-nav[hidden] { display: none; }
+.viewer-nav button {
+  width: 40px; height: 40px; cursor: pointer; font-size: 22px; line-height: 1;
+  background: var(--paper); border: 2px solid var(--ink); border-radius: 50%;
+}
+
+/* ---------- フッター ---------- */
+.site-footer { padding: 28px 16px 40px; text-align: center; font-size: 13px; color: var(--ink-soft); border-top: 2px solid var(--ink); background: var(--bg); }
+.site-footer p { margin: 0; }
+
+/* ---------- スマホ ---------- */
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-stage { width: min(80%, 320px); margin: 24px auto 0; }
+  .site-header nav a:nth-child(3) { display: none; }
+  .detail-head { grid-template-columns: 1fr; text-align: center; }
+  .detail-main { width: 140px; margin: 0 auto; }
+  .sticker-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .sticker { padding: 4px; }
+  .about-points { grid-template-columns: 1fr; }
+  .detail-pager a { font-size: 13px; padding: 6px 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-sticker { animation: none; }
+}
+
+/* ---------- Threads ---------- */
+.about-sns { margin-top: 14px !important; font-size: 14px; }
+.sns-lead { margin: 28px 0 10px; font-weight: 700; }
+.sns-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+.btn-sns {
+  display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px 8px 8px;
+  color: var(--ink); background: var(--paper); font-weight: 700; text-decoration: none;
+  border: 2px solid var(--ink); border-radius: 999px; box-shadow: 3px 3px 0 var(--ink);
+}
+.btn-sns span { padding: 2px 12px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 13px; }
+.btn-sns.tiktok span { background: #fe2c55; }
+.btn-sns:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+.site-footer p + p { margin-top: 4px; }
+.site-footer a { font-weight: 700; }
+.manga-kind { padding: 0 8px; border: 2px solid var(--ink); border-radius: 999px; background: #fff0b8; font-size: 12px; font-weight: 700; }

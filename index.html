@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ほっこりシュールな〇〇</title>
+  <meta name="description" content="真顔で、脱力で、ちょっと違和感。LINEスタンプから始まる「ほっこりシュールな〇〇」シリーズの公式サイト。">
+  <link rel="icon" href="img/yasai/main.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#top">ほっこりシュールな<span>〇〇</span></a>
+    <nav>
+      <a href="#series">スタンプ</a>
+      <a href="#manga">まんが</a>
+      <a href="#about">このシリーズ</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- トップ -->
+    <div id="home">
+      <section class="hero">
+        <div class="hero-text">
+        <p class="hero-kicker">LINEスタンプ発の、ゆるい新シリーズ</p>
+        <h1 class="hero-title">
+          <span class="hero-fixed">ほっこりシュールな</span>
+          <span class="hero-slot"><span id="heroName">人面野菜</span></span>
+        </h1>
+        <p class="hero-lead">真顔で、脱力で、ちょっと違和感。<br>毎日のやりとりに、じわじわ効いてきます。</p>
+        </div>
+        <div class="hero-stage" id="heroStage" aria-hidden="true"></div>
+      </section>
+
+      <section id="series" class="section">
+        <h2 class="section-title">スタンプ<small>いまは <b id="seriesCount"></b> シリーズ</small></h2>
+        <div class="series-grid" id="seriesGrid"></div>
+      </section>
+
+      <section id="manga" class="section">
+        <h2 class="section-title">豆知識まんが・あるあるネタ<small>スタンプのあの子たちが、ちょっと役立つ豆知識と「わかる〜」なあるあるを発信！</small></h2>
+        <div id="mangaList"></div>
+        <p class="sns-lead">新作まんがは Threads と TikTok で先に公開中！</p>
+        <div class="sns-row">
+          <a class="btn-sns threads" href="https://www.threads.com/@hokkori_stamp" target="_blank" rel="noopener"><span>Threads</span>@hokkori_stamp</a>
+          <a class="btn-sns tiktok" href="https://www.tiktok.com/@hokkori_stamp" target="_blank" rel="noopener"><span>TikTok</span>@hokkori_stamp</a>
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <h2 class="section-title">「ほっこりシュール」って？</h2>
+        <div class="about-body">
+          <p>野菜も、しいたけも、布団の人も、みんな真顔です。<br>がんばりすぎず、盛り上げすぎず、でもなんだか気になる。そんな「〇〇」たちを集めたシリーズです。</p>
+          <ul class="about-points">
+            <li><b>真顔</b>感情は顔に出さない</li>
+            <li><b>脱力</b>テンションは低め</li>
+            <li><b>違和感</b>よく見るとなにか変</li>
+          </ul>
+          <p class="about-next">次はどんな「〇〇」になるのか、お楽しみに。</p>
+          <p class="about-sns">新作スタンプ・豆知識まんが・あるあるネタを発信中！</p>
+          <div class="sns-row">
+            <a class="btn-sns threads" href="https://www.threads.com/@hokkori_stamp" target="_blank" rel="noopener"><span>Threads</span>@hokkori_stamp</a>
+            <a class="btn-sns tiktok" href="https://www.tiktok.com/@hokkori_stamp" target="_blank" rel="noopener"><span>TikTok</span>@hokkori_stamp</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- シリーズ詳細（#series/<slug> で表示） -->
+    <div id="detail" hidden></div>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="https://www.threads.com/@hokkori_stamp" target="_blank" rel="noopener">Threads</a>　／　<a href="https://www.tiktok.com/@hokkori_stamp" target="_blank" rel="noopener">TikTok</a></p>
+    <p>©Hokkori.AIstudio</p>
+  </footer>
+
+  <dialog id="viewer" class="viewer">
+    <button class="viewer-close" type="button" aria-label="閉じる">×</button>
+    <img id="viewerImg" alt="">
+    <div class="viewer-nav">
+      <button type="button" data-step="-1" aria-label="前へ">‹</button>
+      <span id="viewerCount"></span>
+      <button type="button" data-step="1" aria-label="次へ">›</button>
+    </div>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
